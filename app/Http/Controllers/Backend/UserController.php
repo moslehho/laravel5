@@ -102,7 +102,7 @@ class UserController extends Controller
     {
         //
         $users = User::all()->pluck('id');
-        return view('Backend.users.edit', compact('user'));
+        return view('Backend.users.edit', compact('users'));
     }
 
     /**
@@ -153,5 +153,11 @@ class UserController extends Controller
         }
         $user->save();
         return redirect(route('admin.users'))->with('success', $msg);
+    }
+
+    public function ViewProfile($id)
+    {
+        $users = User::all()->pluck('id');
+        return view('Backend.users.profile', compact('users'));
     }
 }

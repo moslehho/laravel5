@@ -13,14 +13,14 @@
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="javascript:;"> نمایه</a></li>
+                        <li><a href="{{route('admin.users.profile', Auth::user()->id)}}">پروفایل</a></li>
                         <li>
                             <a href="javascript:;">
                                 <span class="badge bg-red pull-right">50%</span>
-                                <span>تنظیمات</span>
+                                <span>بزودی</span>
                             </a>
                         </li>
-                        <li><a href="javascript:;">کمک</a></li>
+                        <li><a href="javascript:;">بزودی</a></li>
 
                         <form action="{{route('logout')}}" method="POST">
                             @csrf

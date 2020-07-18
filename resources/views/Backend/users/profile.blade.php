@@ -1,7 +1,7 @@
 @extends('Backend.main')
 
 @section('title')
-ویرایش کاربر
+مشاهده پروفایل
 @endsection
 
 
@@ -73,7 +73,7 @@
 
                             <br>
 
-                            <form action="{{route('admin.users.update',$user->id)}}" method="POST" id="demo-form2"
+                            <form action="" method="POST" id="demo-form2"
                                   data-parsley-validate="" class="form-horizontal form-label-left"
                                   novalidate="">
                                 @csrf

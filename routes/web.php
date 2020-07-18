@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin/users', 'middleware' => 'admin'], function () {
     Route::get('/edit/{user}', 'Backend\UserController@edit')->name('admin.users.edit');
     Route::post('/update/{user}', 'Backend\UserController@update')->name('admin.users.update');
     Route::get('/admin/users/status/{user}', 'Backend\UserController@updatestatus')->name('admin.users.status');
+    Route::get('/profile/{user}', 'Backend\UserController@ViewProfile')->name('admin.users.profile');
 });
 
 Route::group(['prefix' => 'admin/category', 'middleware' => 'admin'], function () {
