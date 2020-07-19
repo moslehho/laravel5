@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,6 +16,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $category = category::orderBy('id', 'DESC')->paginate(5);
+        return view('Backend.category.cat_list', compact('category'));
     }
 
     /**

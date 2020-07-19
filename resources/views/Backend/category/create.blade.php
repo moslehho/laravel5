@@ -1,7 +1,7 @@
 @extends('Backend.main')
 
 @section('title')
-    مشاهده پروفایل
+    ایجاد دسته بندی جدید
 @endsection
 
 
@@ -33,7 +33,8 @@
 
 
                     <h3><a href="{{route('admin.index')}}">مدیریت</a>/<a href="{{route('admin.users')}}">کاربران</a>/
-                        ویرایش کاربر
+                        ایجاد کاربر جدید
+
                         <small></small>
                     </h3>
                 </div>
@@ -57,7 +58,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>ویرایش کاربر
+                            <h2>ایجاد کاربر جدید
                                 <small>لطفا اطلاعات صحیح را وارد کنید</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
@@ -70,13 +71,11 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                            @include('Backend.message')
 
                             <br>
-                            @php
-                                $user = Auth::user();
-                            @endphp
 
-                            <form action="" method="POST" id="demo-form2"
+                            <form action="{{route('admin.users.store')}}" method="POST" id="demo-form2"
                                   data-parsley-validate="" class="form-horizontal form-label-left"
                                   novalidate="">
                                 @csrf
@@ -87,8 +86,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="first-name" required="required"
-                                               class="form-control col-md-7 col-xs-12" readonly="readonly"
-                                               name="username" value="{{$user->username}}">
+                                               class="form-control col-md-7 col-xs-12" name="username">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -98,8 +96,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="last-name" required="required"
-                                               class="form-control col-md-7 col-xs-12" name="name" readonly="readonly"
-                                               value="{{$user->name}}">
+                                               class="form-control col-md-7 col-xs-12" name="name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -107,7 +104,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="email" readonly="readonly" value="{{$user->email}}">
+                                               name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -116,7 +113,6 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
                                                name="password">
-                                        <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
 
@@ -125,41 +121,21 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="phone" readonly="readonly" value="{{$user->phone}}">
+                                               name="phone">
                                     </div>
                                 </div>
-
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">نقش</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="role" readonly="readonly">
+                                        <select class="form-control" name="role">
                                             <option>انتخاب گزینه</option>
-                                            <option value="1" @php if ($user->role == 1) echo "selected"; @endphp>مدیر
-                                                کل
-                                            </option>
-                                            <option value="2" @php if ($user->role == 2) echo "selected"; @endphp >مدیر
-                                                ارشد
-                                            </option>
-                                            <option value="3" @php if ($user->role == 3) echo "selected"; @endphp>
-                                                کاربر
-                                            </option>
+                                            <option value="1">مدیر کل</option>
+                                            <option value="2">مدیر ارشد</option>
+                                            <option value="3">کاربر</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">موبایل
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="file"
-                                               name="photo">
-                                    </div>
-                                </div>
-
-
-                                <textarea name="content" class="form-control my-editor"></textarea>
-
 
                                 <div class="ln_solid"></div>
                                 <div class="form-group">

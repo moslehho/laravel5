@@ -43,11 +43,11 @@ Route::group(['prefix' => 'admin/users', 'middleware' => 'admin'], function () {
 });
 
 Route::group(['prefix' => 'admin/category', 'middleware' => 'admin'], function () {
-    Route::get('/', 'Backend\UserController@index')->name('admin.category');
-    Route::get('/create', 'Backend\UserController@create')->name('admin.category.create');
-    Route::post('/store', 'Backend\UserController@store')->name('admin.category.store');
-    Route::get('/edit/{category}', 'Backend\UserController@edit')->name('admin.category.edit');
-    Route::post('/update/{category}', 'Backend\UserController@update')->name('admin.category.update');
+    Route::get('/', 'Backend\CategoryController@index')->name('admin.category');
+    Route::get('/create', 'Backend\CategoryController@create')->name('admin.category.create');
+    Route::post('/store', 'Backend\CategoryController@store')->name('admin.category.store');
+    Route::get('/edit/{category}', 'Backend\CategoryController@edit')->name('admin.category.edit');
+    Route::post('/update/{category}', 'Backend\CategoryController@update')->name('admin.category.update');
 
 });
 

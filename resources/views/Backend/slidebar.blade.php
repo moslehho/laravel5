@@ -55,9 +55,9 @@
 
                             <li><a>دسته بندی ها<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li class="sub_menu"><a href="level2.html">ایجاد دسته بندی</a>
+                                    <li class="sub_menu"><a href="{{route('admin.category.create')}}">ایجاد دسته بندی</a>
                                     </li>
-                                    <li class="sub_menu"><a href="level2.html">مشاهده دسته بندی ها</a>
+                                    <li class="sub_menu"><a href="{{route('admin.category')}}">مشاهده دسته بندی ها</a>
                                     </li>
                                 </ul>
                             </li>
