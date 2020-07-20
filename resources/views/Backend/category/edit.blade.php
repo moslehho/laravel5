@@ -1,7 +1,7 @@
 @extends('Backend.main')
 
 @section('title')
-ویرایش کاربر
+    ویرایش دسته بندی
 @endsection
 
 
@@ -33,7 +33,7 @@
 
 
                     <h3><a href="{{route('admin.index')}}">مدیریت</a>/<a href="{{route('admin.users')}}">کاربران</a>/
-ویرایش کاربر
+                        ویرایش دسته بندی
                         <small></small>
                     </h3>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>ویرایش کاربر
+                            <h2>ویرایش دسته بندی
                                 <small>لطفا اطلاعات صحیح را وارد کنید</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
@@ -64,77 +64,77 @@
 
                             <br>
 
-                            <form action="{{route('admin.users.update',Auth::user()->id)}}" method="POST" id="demo-form2"
+                            <form action="{{route('admin.category.update' , $category->id)}}" method="POST"
+                                  id="demo-form2"
                                   data-parsley-validate="" class="form-horizontal form-label-left"
                                   novalidate="">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">نام کاربری
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">عنوان دسته
+                                        بندی
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="first-name" required="required"
-                                               class="form-control col-md-7 col-xs-12" name="username" value="{{Auth::user()->username}}" >
+                                               class="form-control col-md-7 col-xs-12" name="name"
+                                               value="{{$category->name}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">نام و نام
-                                        خانوادگی
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">آدرس سئو
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="last-name" required="required"
-                                               class="form-control col-md-7 col-xs-12" name="name"  value="{{Auth::user()->name}}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">ایمیل
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="email"  value="{{Auth::user()->email}}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">رمز عبور
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="password" >
-                                        <span class="fa fa-eye form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">موبایل
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="phone" value="{{Auth::user()->phone}}" >
+                                               class="form-control col-md-7 col-xs-12" name="slug"
+                                               value="{{$category->slug}}">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">نقش</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> زیر مجموعه
+                                        <span class="required">*</span>
+                                    </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="role">
-                                            <option>انتخاب گزینه</option>
-                                            <option value="1" @php if (Auth::user()->role == 1) echo "selected"; @endphp>مدیر کل</option>
-                                            <option value="2" @php if (Auth::user()->role == 2) echo "selected"; @endphp >مدیر ارشد</option>
-                                            <option value="3" @php if (Auth::user()->role == 3) echo "selected"; @endphp>کاربر</option>
+                                        <input type="text" id="last-name" required="required" readonly="readonly"
+                                               class="form-control col-md-7 col-xs-12"
+
+                                               @foreach($categori as $parent)
+                                               @if( $category->parentid === $parent->id )
+                                               value="{{ $parent->name }}"
+                                               @endif
+                                               @endforeach
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> تغییر زیر مجموعه </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="select2_group form-control" name="parentid">
+
+                                            <option value="0">انتخاب</option>
+                                            @foreach ($categori as $categorie)
+                                                <option value="{{$categorie->id}}">{{$categorie->name}}</option>';
+
+                                            @endforeach
+
+
                                         </select>
                                     </div>
                                 </div>
 
-
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" class="btn btn-success">ارسال</button>
+                                        <button type="submit" class="btn btn-success">ثبت</button>
 
-                                        <a href="{{route('admin.users')}}" class="btn btn-primary"> انصراف </a>
+                                        <a href="{{route('admin.index')}}" class="btn btn-primary"> انصراف </a>
+                                        <a href="{{route('admin.category')}}" class="btn btn-dark"> مشاهده دسته بندی
+                                            ها </a>
+
 
                                     </div>
                                 </div>

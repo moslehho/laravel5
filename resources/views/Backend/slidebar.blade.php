@@ -41,8 +41,8 @@
 
                     <li><a><i class="fa fa-shopping-cart"></i> محصولات <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="form.html">ایجاد محصول</a></li>
-                            <li><a href="form.html">مشاهده محصولات</a></li>
+                            <li><a href="{{route('admin.article.create')}}">ایجاد محصول</a></li>
+                            <li><a href="{{route('admin.article')}}">مشاهده محصولات</a></li>
                         </ul>
                     </li>
 
@@ -62,14 +62,7 @@
                                 </ul>
                             </li>
 
-                            <li><a>کاربران<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li class="sub_menu"><a href="level2.html">ایجاد کاربر جدید</a>
-                                    </li>
-                                    <li class="sub_menu"><a href="level2.html">مشاهده کاربران</a>
-                                    </li>
-                                </ul>
-                            </li>
+
 
                         </ul>
                     </li>

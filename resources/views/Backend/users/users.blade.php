@@ -69,7 +69,8 @@
                         </div>
                         <div class="x_content">
                             @include('Backend.message')
-                            <a href="{{route('admin.users.create')}}" class="btn btn-success btn-xs"><i class="fa fa-user"></i> ایجاد کاربر جدید </a>
+                            <a href="{{route('admin.users.create')}}" class="btn btn-success btn-xs"><i
+                                    class="fa fa-user"></i> ایجاد کاربر جدید </a>
                             <table id="datatable-responsive"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    cellspacing="0" width="100%">
@@ -140,7 +141,8 @@
 
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="{{route('admin.users.edit', Auth::user()->id)}}">ویرایش</a>
+                                                    <li>
+                                                        <a href="{{route('admin.users.edit', Auth::user()->id)}}">ویرایش</a>
                                                     </li>
                                                     <li><a href="#">حذف</a>
                                                     </li>

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->default('09123550956');
             $table->tinyInteger('role')->default('1');
             $table->tinyInteger('status')->default('1');
-            $table->string('password')->default('$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+            $table->string('password')->default('$2y$10$Fvkadzw4OiLeIypXAMLVPOshdvv.PUiVk55KhTMzhzpt1vEjtat6m');
             $table->rememberToken();
             $table->timestamps();
         });

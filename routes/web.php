@@ -51,5 +51,13 @@ Route::group(['prefix' => 'admin/category', 'middleware' => 'admin'], function (
 
 });
 
+Route::group(['prefix' => 'admin/article', 'middleware' => 'admin'], function () {
+    Route::get('/', 'Backend\ArticleController@index')->name('admin.article');
+    Route::get('/create', 'Backend\ArticleController@create')->name('admin.article.create');
+    Route::post('/store', 'Backend\CategoryController@store')->name('admin.category.store');
+    Route::get('/edit/{category}', 'Backend\CategoryController@edit')->name('admin.category.edit');
+    Route::post('/update/{category}', 'Backend\CategoryController@update')->name('admin.category.update');
+
+});
 
 

@@ -33,21 +33,10 @@
 
 
                     <h3><a href="{{route('admin.index')}}">مدیریت</a>/<a href="{{route('admin.users')}}">کاربران</a>/
-                        ایجاد کاربر جدید
+                        ایجاد دسته بندی جدید
 
                         <small></small>
                     </h3>
-                </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="جست و جو برای...">
-                            <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">برو!</button>
-                    </span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -58,7 +47,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>ایجاد کاربر جدید
+                            <h2>ایجاد دسته بندی جدید
                                 <small>لطفا اطلاعات صحیح را وارد کنید</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
@@ -72,67 +61,44 @@
                         </div>
                         <div class="x_content">
                             @include('Backend.message')
-
                             <br>
 
-                            <form action="{{route('admin.users.store')}}" method="POST" id="demo-form2"
+                            <form action="{{route('admin.category.store')}}" method="POST" id="demo-form2"
                                   data-parsley-validate="" class="form-horizontal form-label-left"
                                   novalidate="">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">نام کاربری
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">عنوان دسته
+                                        بندی
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="first-name" required="required"
-                                               class="form-control col-md-7 col-xs-12" name="username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">نام و نام
-                                        خانوادگی
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="last-name" required="required"
                                                class="form-control col-md-7 col-xs-12" name="name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">ایمیل
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">آدرس سئو
+                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">رمز عبور
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="password">
+                                        <input type="text" id="last-name" required="required"
+                                               class="form-control col-md-7 col-xs-12" name="slug">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">موبایل
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="phone">
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">نقش</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">زیر مجموعه</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="role">
-                                            <option>انتخاب گزینه</option>
-                                            <option value="1">مدیر کل</option>
-                                            <option value="2">مدیر ارشد</option>
-                                            <option value="3">کاربر</option>
+                                        <select class="select2_group form-control" name="parentid">
+                                            <option value="0">انتخاب</option>
+                                            @foreach ($category as $categori)
+                                                <option value="{{$categori->id}}">{{$categori->name}}</option>';
+
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>
@@ -140,9 +106,11 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" class="btn btn-success">ارسال</button>
+                                        <button type="submit" class="btn btn-success">ثبت</button>
 
-                                        <a href="{{route('admin.users')}}" class="btn btn-primary"> انصراف </a>
+                                        <a href="{{route('admin.index')}}" class="btn btn-primary"> انصراف </a>
+                                        <a href="{{route('admin.category')}}" class="btn btn-dark"> مشاهده دسته بندی ها </a>
+
 
                                     </div>
                                 </div>
