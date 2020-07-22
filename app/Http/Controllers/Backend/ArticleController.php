@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Category;
 
 class ArticleController extends Controller
 {
@@ -15,6 +17,8 @@ class ArticleController extends Controller
     public function index()
     {
         //
+        $article = Article::all();
+        return view('Backend.article.index', compact('article'));
     }
 
     /**
@@ -25,6 +29,10 @@ class ArticleController extends Controller
     public function create()
     {
         //
+        $categories = Category::all()->pluck('name', 'id');
+
+        return view('Backend.article.create', compact('categories'));
+
     }
 
     /**

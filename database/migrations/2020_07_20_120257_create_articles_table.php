@@ -22,7 +22,8 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id');
             $table->integer('hit');
             $table->tinyInteger('status');
-            $table->string('image');
+            $table->string('category');
+            $table->string('tags');
             $table->timestamps();
         });
     }

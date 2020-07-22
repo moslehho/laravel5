@@ -39,12 +39,16 @@
 
 
     <!-- /file manager  -->
+    <link rel='stylesheet' href='https://harvesthq.github.io/chosen/chosen.css'>
+
+
 
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
         var editor_config = {
             path_absolute: "/",
             selector: "textarea.my-editor",
+            directionality :"rtl",
             plugins: [
                 "directionality",
                 "advlist autolink lists link image charmap print preview hr anchor pagebreak",

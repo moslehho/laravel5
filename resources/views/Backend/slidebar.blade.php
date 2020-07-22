@@ -39,10 +39,10 @@
                         </ul>
                     </li>
 
-                    <li><a><i class="fa fa-shopping-cart"></i> محصولات <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-shopping-cart"></i> مقالات <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{route('admin.article.create')}}">ایجاد محصول</a></li>
-                            <li><a href="{{route('admin.article')}}">مشاهده محصولات</a></li>
+                            <li><a href="{{route('admin.article.create')}}">ایجاد مقاله جدید</a></li>
+                            <li><a href="{{route('admin.article')}}">مشاهده مقالات</a></li>
                         </ul>
                     </li>
 
@@ -51,20 +51,13 @@
                     <li><a><i class="fa fa-sitemap"></i>تنظیمات <span
                                 class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-
-
-                            <li><a>دسته بندی ها<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li class="sub_menu"><a href="{{route('admin.category.create')}}">ایجاد دسته بندی</a>
-                                    </li>
-                                    <li class="sub_menu"><a href="{{route('admin.category')}}">مشاهده دسته بندی ها</a>
-                                    </li>
-                                </ul>
-                            </li>
-
+                            <li><a href="">تنظیمات کلی سایت</a></li>
+                            <li><a href="{{route('admin.filemanager')}}">مدیریت فایل</a></li>
+                            <li><a href="{{route('admin.category')}}">مشاهده دسته بندی ها</a></li>
 
 
                         </ul>
+
                     </li>
                 </ul>
             </div>

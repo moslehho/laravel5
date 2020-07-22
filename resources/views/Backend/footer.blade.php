@@ -72,3 +72,18 @@
 <script src="{{url('/build/js/custom.min.js')}}"></script>
 
 <!-- /bootstrap-daterangepicker -->
+<!-- End custom js for this page-->
+
+<!--<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script> -->
+<script src='http://harvesthq.github.io/chosen/chosen.jquery.js'></script>
+<script src="{{url('/build/js/multiselect.js')}}"></script>
+
+
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+
+
+<script>
+    {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/lfm.js')) !!};
+    var route_prefix = "http://127.0.0.1:8000/laravel-filemanager";
+    $('#lfm').filemanager('image', {prefix: route_prefix});
+</script>

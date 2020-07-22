@@ -18,6 +18,11 @@ class AdminController extends Controller
         return view('Backend.index');
     }
 
+    public function filemanager()
+    {
+        return view('Backend.file_manager.create');
+
+    }
     /**
      * Show the form for creating a new resource.
      *php
