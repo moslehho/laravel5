@@ -83,7 +83,7 @@
 
 
 <script>
-    {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/lfm.js')) !!};
+
     var route_prefix = "http://127.0.0.1:8000/laravel-filemanager";
     $('#lfm').filemanager('image', {prefix: route_prefix});
 </script>

@@ -61,12 +61,12 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <br class="x_content">
+
                         @include('Backend.message')
 
                         <br>
 
-                        <form action="" method="POST" id="demo-form2"
+                        <form action="{{route('admin.article.store')}}" method="POST" id="demo-form2"
                               data-parsley-validate="" class="form-horizontal form-label-left"
                               novalidate="">
                             @csrf
@@ -77,7 +77,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="first-name" required="required"
-                                           class="form-control col-md-7 col-xs-12" name="name">
+                                           class="form-control col-md-7 col-xs-12"  name="name">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -85,8 +85,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" placeholder="انگلیسی وارد شود" id="slug" required="required"
-                                           class="form-control col-md-7 col-xs-12" name="slug">
+                                    <input type="text" placeholder="*انگلیسی وارد شود" id="slug" required="required"
+                                           class="form-control col-md-7 col-xs-12" name="slug"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />
+
+
                                 </div>
                             </div>
 
@@ -95,13 +97,13 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="middle-name" readonly="readonly" class="form-control col-md-7 col-xs-12"
-                                           type="text"
-                                           name="user_id">
+                                           type="text" value="{{ Auth::user()->username }}"
+                                           name="username">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">توضیحات کوتاه
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">توضیحات کوتاه
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -112,7 +114,7 @@
 
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">توضیحات تکمیلی
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fulldescription">توضیحات تکمیلی
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -139,8 +141,8 @@
                                 <div class="control-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">ورودی برچسب</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="tags" type="text" class="tags form-control"
-                                               value="اجتماعی, تبلیغات, فروش"/>
+                                        <input id="tags" name="tags" type="text" class="tags form-control"
+                                               />
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +160,7 @@
                                                 <i class="fa fa-picture-o"></i> انتخاب
                                             </a>
                                         </span>
-                                        <input id="thumbnail" class="form-control" type="text" name="filepath">
+                                        <input id="thumbnail" class="form-control" type="text" name="images">
 
                                     </div>
 
@@ -171,7 +173,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button type="submit" class="btn btn-success">ارسال</button>
 
-                                    <a href="{{route('admin.users')}}" class="btn btn-primary"> انصراف </a>
+                                    <a href="{{route('admin.index')}}" class="btn btn-primary"> انصراف </a>
 
                                 </div>
                             </div>

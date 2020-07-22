@@ -46,18 +46,12 @@
                         </ul>
                     </li>
 
-
-
-                    <li><a><i class="fa fa-sitemap"></i>تنظیمات <span
-                                class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-sun-o"></i> تنظیمات <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="">تنظیمات کلی سایت</a></li>
+                            <li><a href="{{route('admin.filemanager')}}">تنظیمات کلی سایت</a></li>
                             <li><a href="{{route('admin.filemanager')}}">مدیریت فایل</a></li>
                             <li><a href="{{route('admin.category')}}">مشاهده دسته بندی ها</a></li>
-
-
                         </ul>
-
                     </li>
                 </ul>
             </div>
