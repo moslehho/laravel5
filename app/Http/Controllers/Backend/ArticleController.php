@@ -76,6 +76,7 @@ class ArticleController extends Controller
             'status' => '0',
             'category' => $categories
         );
+
         DB::table('article')->insert($data);
 
         $msg = 'مقاله با موفقیت ایجاد شد';

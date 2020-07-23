@@ -22,34 +22,32 @@
                 <div class="row top_tiles">
                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                            <div class="count">179</div>
-                            <h3>ثبت نام ها جدید</h3>
-                            <p>لورم ایپسوم متن ساختگی با.</p>
+                            <div class="icon"><i class="glyphicon glyphicon-user"></i></div>
+                            <div class="count">{{ $users->count() }}</div>
+                            <h3>تعداد کاربران کل سامانه</h3>
+                            <p></p>
                         </div>
                     </div>
                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-comments-o"></i></div>
-                            <div class="count">179</div>
-                            <h3>ثبت نام ها جدید</h3>
-                            <p>لورم ایپسوم متن ساختگی با.</p>
+                            <div class="icon"><i class="glyphicon glyphicon-book"></i></div>
+                            <div class="count">{{ $article->count() }}</div>
+                            <h3>تعداد کل مقالات</h3>
+
                         </div>
                     </div>
                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                            <div class="count">179</div>
-                            <h3>ثبت نام ها جدید</h3>
-                            <p>لورم ایپسوم متن ساختگی با.</p>
+                            <div class="icon"><i class="fa fa-comments"></i></div>
+                            <div class="count">22</div>
+                            <h3>کل نظرها</h3>
                         </div>
                     </div>
                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
                             <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                            <div class="count">179</div>
+                            <div class="count">33</div>
                             <h3>ثبت نام ها جدید</h3>
-                            <p>لورم ایپسوم متن ساختگی با.</p>
                         </div>
                     </div>
                 </div>

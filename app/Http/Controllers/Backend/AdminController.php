@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Article;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,7 +17,11 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('Backend.index');
+        $users = User::all();
+        $article = Article::all();
+
+
+        return view('Backend.index', compact('users', 'article'));
     }
 
     public function filemanager()
