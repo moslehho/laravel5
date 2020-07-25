@@ -53,7 +53,7 @@ class ArticleController extends Controller
         ];
         $validatedData = $request->validate([
             'name' => 'required',
-            'slug' => 'required|unique:article',
+            'slug' => 'required|unique:articles',
             'description' => 'required',
         ], $messages);
 
@@ -62,7 +62,7 @@ class ArticleController extends Controller
         $username = $request->input('username');
         $description = $request->input('description');
         $fulldescription = $request->input('fulldescription');
-        $categories = $request->json('categories');
+        $categories = $request->input('categories');
         $tags = $request->input('tags');
 
         $data = array(
@@ -74,10 +74,10 @@ class ArticleController extends Controller
             'tags' => $tags,
             'hit' => '1',
             'status' => '0',
-            'category' => $categories
+            'category' => $categories,
         );
 
-        DB::table('article')->insert($data);
+        DB::table('articles')->insert($data);
 
         $msg = 'مقاله با موفقیت ایجاد شد';
         return redirect(route('admin.article'))->with('success', $msg);
@@ -105,6 +105,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         //
+
+        $article = Article::all()->pluck('id');
+        return view('Backend.article.edit', compact('article'));
     }
 
     /**
@@ -125,8 +128,15 @@ class ArticleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+        try {
+            $article->delete();
+        } catch (Exception $exception) {
+            return redirect(route('admin.article'))->with('warning', $exception->getCode());
+        }
+
+        $msg = "آیتم مورد نظر حذف گردید";
+        return redirect(route('admin.article'))->with('success', $msg);
     }
 }

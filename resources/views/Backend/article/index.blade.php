@@ -1,7 +1,7 @@
 @extends('Backend.main')
 
 @section('title')
-   مقالات
+    مقالات
 @endsection
 
 
@@ -80,13 +80,14 @@
                                         <th>
                                             <input type="checkbox" id="check-all" class="flat">
                                         </th>
-                                        <th class="column-title">صورتحساب</th>
-                                        <th class="column-title">تاریخ صورتحساب</th>
-                                        <th class="column-title">سفارش</th>
-                                        <th class="column-title">پرداخت به نام</th>
+                                        <th class="column-title">تاریخ</th>
+                                        <th class="column-title">عنوان</th>
+                                        <th class="column-title"><i class="fa fa-eye"></i></th>
+                                        <th class="column-title"><i class="fa fa-comment-o"></i></th>
                                         <th class="column-title">وضعیت</th>
-                                        <th class="column-title">مقدار</th>
-                                        <th class="column-title no-link last"><span class="nobr">عمل</span>
+                                        <th class="column-title">دسته بندی</th>
+                                        <th class="column-title">نویسنده</th>
+                                        <th class="column-title no-link last"><span class="nobr">عملیات</span>
                                         </th>
                                         <th class="bulk-actions" colspan="7">
                                             <a class="antoo" style="color:#fff; font-weight:500;">عمل همگانی ( <span
@@ -96,126 +97,50 @@
                                     </thead>
 
                                     <tbody>
-                                    <tr class="even pointer">
-                                        <td class="a-center ">
-                                            <input type="checkbox" class="flat" name="table_records">
-                                        </td>
-                                        <td class=" ">121000040</td>
-                                        <td class=" ">May 23, 2014 11:47:56 PM</td>
-                                        <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                        <td class=" ">John Blank L</td>
-                                        <td class=" ">Paid</td>
-                                        <td class="a-right a-right ">$7.45</td>
-                                        <td class=" last"><a href="#">مشاهده</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd pointer">
-                                        <td class="a-center ">
-                                            <input type="checkbox" class="flat" name="table_records">
-                                        </td>
-                                        <td class=" ">121000039</td>
-                                        <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                        <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                        </td>
-                                        <td class=" ">John Blank L</td>
-                                        <td class=" ">Paid</td>
-                                        <td class="a-right a-right ">$741.20</td>
-                                        <td class=" last"><a href="#">مشاهده</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td class="a-center ">
-                                            <input type="checkbox" class="flat" name="table_records">
-                                        </td>
-                                        <td class=" ">121000038</td>
-                                        <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                        <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                        </td>
-                                        <td class=" ">Mike Smith</td>
-                                        <td class=" ">Paid</td>
-                                        <td class="a-right a-right ">$432.26</td>
-                                        <td class=" last"><a href="#">مشاهده</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd pointer">
-                                        <td class="a-center ">
-                                            <input type="checkbox" class="flat" name="table_records">
-                                        </td>
-                                        <td class=" ">121000037</td>
-                                        <td class=" ">May 24, 2014 10:52:44 PM</td>
-                                        <td class=" ">121000204</td>
-                                        <td class=" ">Mike Smith</td>
-                                        <td class=" ">Paid</td>
-                                        <td class="a-right a-right ">$333.21</td>
-                                        <td class=" last"><a href="#">مشاهده</a>
-                                        </td>
-                                    </tr>
+                                    @foreach($article as $articles)
+
+                                        <tr class="even pointer">
+                                            <td class="a-center ">
+                                                <input type="checkbox" class="flat" name="table_records">
+                                            </td>
+                                            <td class=" ">{!! jdate($articles->created_at)->format('%Y-%m-%d') !!}</td>
+                                            <td class=" ">{{$articles->name}}</td>
+                                            <td class=" ">{{$articles->hit}}</td>
+                                            <td class=" ">-</td>
+                                            <td class=" ">{{$articles->status}}</td>
+                                            <td class=" ">{{$articles->category}}</td>
+                                            <td class=" ">{{$articles->username}}</td>
+                                            <td class=" last">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-danger">عمل</button>
+                                                    <button type="button" class="btn btn-danger dropdown-toggle"
+                                                            data-toggle="dropdown" aria-expanded="false">
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="">ویرایش</a>
+                                                        </li>
+                                                        <li><a href="{{route('admin.article.destroy',$articles->id)}}"
+                                                               onclick="return confirm('آیا آیتم مورد نظر حذف شود');">حذف</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
 
                                     </tbody>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
 
-
-
-
-
-
-
-                            <table id="datatable-responsive"
-                                   class="table table-striped table-bordered dt-responsive nowrap"
-                                   cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th>ایجاد</th>
-                                    <th>عنوان</th>
-                                    <th><i class="fa fa-eye"></i></th>
-                                    <th><i class="fa fa-comment-o"></i></th>
-                                    <th>وضعیت</th>
-                                    <th>دسته بندی</th>
-                                    <th>توسط</th>
-                                    <th>عملیات</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-danger">عمل</button>
-                                                <button type="button" class="btn btn-danger dropdown-toggle"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="caret"></span>
-
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="">ویرایش</a>
-                                                    </li>
-                                                    <li><a href="#">حذف</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 

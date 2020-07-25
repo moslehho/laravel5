@@ -1,7 +1,7 @@
 @extends('Backend.main')
 
 @section('title')
-    ایجاد مقاله
+    ویرایش مقاله
 
 @endsection
 
@@ -34,7 +34,7 @@
 
 
                     <h3><a href="{{route('admin.index')}}">مدیریت</a>/<a href="{{route('admin.article')}}">مقالات</a>/
-                        ایجاد مقاله
+                        ویرایش مقاله
 
                         <small></small>
                     </h3>
@@ -49,7 +49,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>ایجاد مقاله
+                            <h2>ویرایش مقاله
                                 <small>لطفا اطلاعات صحیح را وارد کنید</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
@@ -66,18 +66,19 @@
 
                         <br>
 
-                        <form action="{{route('admin.article.store')}}" method="POST" id="demo-form2"
+                        <form action="{{route('admin.article.update'), $article->id}}" method="POST" id="demo-form2"
                               data-parsley-validate="" class="form-horizontal form-label-left"
                               novalidate="">
                             @csrf
 
+                            @foreach($article as $articles)
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">عنوان مقاله
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="first-name" required="required"
-                                           class="form-control col-md-7 col-xs-12"  name="name">
+                                           class="form-control col-md-7 col-xs-12" value="{{$articles->name}}"  name="name">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -86,7 +87,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" placeholder="*انگلیسی وارد شود" id="slug" required="required"
-                                           class="form-control col-md-7 col-xs-12" name="slug"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />
+                                           class="form-control col-md-7 col-xs-12" name="slug" value="{{$articles->slug}}"   onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />
 
 
                                 </div>
@@ -97,8 +98,8 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="middle-name" readonly="readonly" class="form-control col-md-7 col-xs-12"
-                                           type="text" value="{{ Auth::user()->username }}"
-                                           name="username">
+                                           type="text" value="{{$articles->username}}"
+                                           name="username" >
                                 </div>
                             </div>
 
@@ -108,7 +109,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea name="description"
-                                              class="form-control my-editor">{{old('description')}}</textarea>
+                                              class="form-control my-editor" value="{{$articles->description}}" >{{old('description')}}</textarea>
                                 </div>
                             </div>
 
@@ -119,7 +120,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea name="fulldescription" rows="10"
-                                              class="form-control my-editor"></textarea>
+                                              class="form-control my-editor" value="{{$articles->fulldescription}}" ></textarea>
                                 </div>
                             </div>
 
@@ -141,7 +142,7 @@
                                 <div class="control-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">ورودی برچسب</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="tags" name="tags" type="text" class="tags form-control"
+                                        <input id="tags" name="tags" type="text" value="{{$articles->tags}}"  class="tags form-control"
                                                />
                                     </div>
                                 </div>
@@ -152,6 +153,7 @@
                                 <div class="control-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">عکس</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <img src="{{$articles->images}}" />
 
                                         <div id="holder" style="margin-bottom:15px;margin-top:15px;max-height:300px;"></div>
 
