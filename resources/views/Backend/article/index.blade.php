@@ -87,9 +87,8 @@
                                         <th class="column-title">وضعیت</th>
                                         <th class="column-title">دسته بندی</th>
                                         <th class="column-title">نویسنده</th>
-                                        <th class="column-title no-link last"><span class="nobr">عملیات</span>
-                                        </th>
-                                        <th class="bulk-actions" colspan="7">
+                                        <th class="column-title no-link last"><span class="nobr">عملیات</span></th>
+                                        <th class="bulk-actions" colspan="8">
                                             <a class="antoo" style="color:#fff; font-weight:500;">عمل همگانی ( <span
                                                     class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                                         </th>
@@ -108,7 +107,16 @@
                                             <td class=" ">{{$articles->hit}}</td>
                                             <td class=" ">-</td>
                                             <td class=" ">{{$articles->status}}</td>
-                                            <td class=" ">{{$articles->category}}</td>
+                                            <td class=" ">
+                                                @foreach ($articles->categories()->pluck('name') as $category)
+                                                    <span class="label label-info">{{$category}}</span>
+                                                @endforeach
+
+
+
+
+
+                                            </td>
                                             <td class=" ">{{$articles->username}}</td>
                                             <td class=" last">
                                                 <div class="btn-group">
@@ -119,7 +127,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li>
-                                                            <a href="">ویرایش</a>
+                                                            <a href="{{route('admin.article.edit',$articles->id)}}">ویرایش</a>
                                                         </li>
                                                         <li><a href="{{route('admin.article.destroy',$articles->id)}}"
                                                                onclick="return confirm('آیا آیتم مورد نظر حذف شود');">حذف</a>

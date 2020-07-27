@@ -66,19 +66,22 @@
 
                         <br>
 
-                        <form action="{{route('admin.article.update'), $article->id}}" method="POST" id="demo-form2"
+
+
+
+                        <form action="" method="POST" id="demo-form2"
                               data-parsley-validate="" class="form-horizontal form-label-left"
                               novalidate="">
                             @csrf
 
-                            @foreach($article as $articles)
+
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">عنوان مقاله
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="first-name" required="required"
-                                           class="form-control col-md-7 col-xs-12" value="{{$articles->name}}"  name="name">
+                                           class="form-control col-md-7 col-xs-12" value="{{$article->name}}"  name="name">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -87,7 +90,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" placeholder="*انگلیسی وارد شود" id="slug" required="required"
-                                           class="form-control col-md-7 col-xs-12" name="slug" value="{{$articles->slug}}"   onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />
+                                           class="form-control col-md-7 col-xs-12" name="slug" value="{{$article->slug}}"   onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" />
 
 
                                 </div>
@@ -98,7 +101,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="middle-name" readonly="readonly" class="form-control col-md-7 col-xs-12"
-                                           type="text" value="{{$articles->username}}"
+                                           type="text" value="{{$article->username}}"
                                            name="username" >
                                 </div>
                             </div>
@@ -109,7 +112,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea name="description"
-                                              class="form-control my-editor" value="{{$articles->description}}" >{{old('description')}}</textarea>
+                                              class="form-control my-editor" >{{$article->description}}</textarea>
                                 </div>
                             </div>
 
@@ -120,7 +123,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea name="fulldescription" rows="10"
-                                              class="form-control my-editor" value="{{$articles->fulldescription}}" ></textarea>
+                                              class="form-control my-editor" >{{$article->fulldescription}}</textarea>
                                 </div>
                             </div>
 
@@ -142,7 +145,7 @@
                                 <div class="control-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">ورودی برچسب</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="tags" name="tags" type="text" value="{{$articles->tags}}"  class="tags form-control"
+                                        <input id="tags" name="tags" type="text" value="{{$article->tags}}"  class="tags form-control"
                                                />
                                     </div>
                                 </div>
@@ -153,7 +156,7 @@
                                 <div class="control-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">عکس</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <img src="{{$articles->images}}" />
+                                        <img src="{{$article->images}}" />
 
                                         <div id="holder" style="margin-bottom:15px;margin-top:15px;max-height:300px;"></div>
 
@@ -171,6 +174,7 @@
                             </div>
 
 
+
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button type="submit" class="btn btn-success">ارسال</button>
@@ -180,7 +184,9 @@
                                 </div>
                             </div>
 
+
                         </form>
+
                     </div>
                 </div>
             </div>

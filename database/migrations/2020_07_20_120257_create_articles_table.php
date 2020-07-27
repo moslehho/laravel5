@@ -20,10 +20,10 @@ class CreateArticlesTable extends Migration
             $table->text('description');
             $table->text('fulldescription');
             $table->string('username');
-            $table->integer('hit');
-            $table->tinyInteger('status');
-            $table->string('category');
+            $table->integer('hit')->default('300');
+            $table->tinyInteger('status')->default('1');
             $table->string('tags');
+            $table->string('images');
             $table->timestamps();
         });
     }

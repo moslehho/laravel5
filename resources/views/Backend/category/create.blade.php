@@ -106,10 +106,10 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" class="btn btn-success">ثبت</button>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ذخیره </button>
 
                                         <a href="{{route('admin.index')}}" class="btn btn-primary"> انصراف </a>
-                                        <a href="{{route('admin.category')}}" class="btn btn-dark"> مشاهده دسته بندی ها </a>
+                                        <a href="{{route('admin.category')}}" class="btn btn-dark"><i class="fa fa-list-alt"></i> مشاهده دسته بندی ها </a>
 
 
                                     </div>

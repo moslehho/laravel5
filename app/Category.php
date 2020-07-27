@@ -2,14 +2,20 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
     //
-    protected $fillable = [
-        'name', 'slug', 'parentid',
-    ];
+    protected $fillable = ['name', 'slug', 'parentid'];
+
+    public function articles()
+    {
+        return $this->belongsToMany(App\Article);
+    }
+
+
 
 
 }

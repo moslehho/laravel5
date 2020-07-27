@@ -29,6 +29,7 @@ Route::get('/', function () { return view('Frontend.welcome');
 
 Route::group(['perfix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/admin', 'Backend\AdminController@index')->name('admin.index');
+    Route::get('/setting', 'Backend\AdminController@adminpanel')->name('admin.adminpanel');
     Route::get('/file-manager', 'Backend\AdminController@filemanager')->name('admin.filemanager');
 
 });
@@ -56,8 +57,9 @@ Route::group(['prefix' => 'admin/article', 'middleware' => 'admin'], function ()
     Route::get('/', 'Backend\ArticleController@index')->name('admin.article');
     Route::get('/create', 'Backend\ArticleController@create')->name('admin.article.create');
     Route::post('/store', 'Backend\ArticleController@store')->name('admin.article.store');
-    Route::get('/edit/{id}', 'Backend\ArticleController@edit')->name('admin.article.edit');
-    Route::post('/update/{id}', 'Backend\ArticleController@update')->name('admin.article.update');
+    Route::get('/edit/{article}', 'Backend\ArticleController@edit')->name('admin.article.edit');
+    Route::post('/update/{article}', 'Backend\ArticleController@update')->name('admin.article.update');
+    Route::post('/destroy/{article}', 'Backend\ArticleController@destroy')->name('admin.article.destroy');
 
 });
 

@@ -11,6 +11,15 @@ class Article extends Model
 
 
     protected $fillable = [
-        'name', 'slug', 'description', 'fulldescription', 'username', 'hit', 'status', 'tags' , 'images' , 'category'
+        'name', 'slug', 'description', 'fulldescription', 'username', 'hit', 'status', 'tags' , 'images'
     ];
-   }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
+    }
+}

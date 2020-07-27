@@ -57,27 +57,47 @@ class ArticleController extends Controller
             'description' => 'required',
         ], $messages);
 
-        $name = $request->input('name');
-        $slug = $request->input('slug');
-        $username = $request->input('username');
-        $description = $request->input('description');
-        $fulldescription = $request->input('fulldescription');
-        $categories = $request->input('categories');
-        $tags = $request->input('tags');
 
-        $data = array(
-            'name' => $name,
-            'slug' => $slug,
-            'username' => $username,
-            'description' => $description,
-            'fulldescription' => $fulldescription,
-            'tags' => $tags,
-            'hit' => '1',
-            'status' => '0',
-            'category' => $categories,
-        );
+        try {
+            $article = new Article();
 
-        DB::table('articles')->insert($data);
+            $article = $article->create($request->all());
+            $article->categories()->attach($request->categories);
+
+
+        } catch (Exception $exception) {
+            switch ($exception->getCode()) {
+                case 23000:
+                    $msg = "نام مستعار وارد شده تکراری است";
+                    break;
+            }
+            return redirect(route('admin.articles.create'))->with('warning', $msg);
+        }
+
+
+        /**
+         * $name = $request->input('name');
+         * $slug = $request->input('slug');
+         * $username = $request->input('username');
+         * $description = $request->input('description');
+         * $fulldescription = $request->input('fulldescription');
+         * $categories = $request->input('categories');
+         * $tags = $request->input('tags');
+         *
+         * $data = array(
+         * 'name' => $name,
+         * 'slug' => $slug,
+         * 'username' => $username,
+         * 'description' => $description,
+         * 'fulldescription' => $fulldescription,
+         * 'tags' => $tags,
+         * 'hit' => '1',
+         * 'status' => '0',
+         * 'category' => $categories,
+         * );
+         * DB::table('articles')->insert($data);
+         **/
+
 
         $msg = 'مقاله با موفقیت ایجاد شد';
         return redirect(route('admin.article'))->with('success', $msg);
@@ -102,12 +122,12 @@ class ArticleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
         //
-
-        $article = Article::all()->pluck('id');
-        return view('Backend.article.edit', compact('article'));
+        $categories = Category::all()->pluck('name', 'id');
+        $article = Article::all();
+        return view('Backend.article.edit', compact('article', 'categories'));
     }
 
     /**
@@ -120,6 +140,32 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $messages = [
+            'name.required' => 'فیلد عنوان را وارد نمایید',
+            'slug.unique' => 'فیلد نام مستعار تکراری است.عنوان را عوض کنید',
+            'slug.required' => 'فیلد نام مستعار اجباری است'
+        ];
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'slug' => 'required'
+        ], $messages);
+
+
+        try {
+            $article->update($request->all());
+            $article->categories()->sync($request->categories);
+        } catch (Exception $exception) {
+            switch ($exception->getCode()) {
+                case 23000:
+                    $msg = "نام مستعار وارد شده تکراری است";
+                    break;
+            }
+            return redirect(route('admin.articles.edit'))->with('warning', $msg);
+        }
+
+        $msg = "ذخیره ی مطلب جدید با موفقیت انجام شد";
+        return redirect(route('admin.articles'))->with('success', $msg);
     }
 
     /**
